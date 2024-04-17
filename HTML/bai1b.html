@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="../CSS/bootstrap.min.css" />
+    <script src="../JS/jquery-3.7.1.min.js"></script>
+    <script src="../JS/jquery-3.7.1.min.js"></script>
+    <style>
+      header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        height: 80px;
+        background-color: #3b5798;
+      }
+
+      span {
+        display: block;
+        color: red;
+      }
+      header h1,
+      header label {
+        color: aliceblue;
+      }
+
+      header form > * {
+        display: inline-block;
+      }
+
+      .body {
+        height: auto;
+      }
+
+      section {
+
+        background-color: #e5e6fb;
+      }
+
+      aside {
+        background-color: #e5e6fb;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+
+      <header>
+        <h1>facebook</h1>
+        <form action="">
+          <div class="form-group">
+            <label for="">Email hoặc điện thoại</label>
+            <br />
+            <input type="text" name="" id="" />
+          </div>
+          <div class="form-group">
+            <label for="">Mật khẩu</label>
+            <br />
+            <input type="password" name="" id="" />
+          </div>
+          <button type="submit">Đăng nhập</button>
+        </form>
+      </header>
+      <div class="body" style="display: flex">
+        <section style="width: 40%">
+          <img src="../IMG/img_side1.png" alt="" />
+          <p
+            style="position: absolute; font-weight: 800; bottom: 25px; left: 8%"
+          >
+            Chúng tôi mong sớm gặp lại bạn.
+          </p>
+        </section>
+        <aside style="width: 60%">
+          <br />
+
+          <h1>Đăng ký</h1>
+          <br />
+          <p>Miến phí và sẽ luôn như vậy</p>
+          <br />
+          <form action="">
+            <div class="" style="display: flex">
+              <div class="form-group">
+                <input
+                  onblur="ckHo()"
+                  class=""
+                  type="text"
+                  name=""
+                  id="ho"
+                  placeholder="Họ "
+                />
+                <span id="mgho"></span>
+              </div>
+              <div class="form-group">
+                <input
+                  onblur="ckTen()"
+                  class=""
+                  type="text"
+                  name=""
+                  id="ten"
+                  placeholder="Tên "
+                />
+                <span id="mgten"></span>
+              </div>
+            </div>
+            <br />
+            <input
+              onblur="ckEmail()"
+              id="email"
+              style="width: 385px"
+              type="email"
+              class=""
+              placeholder="Email đăng nhập"
+            />
+            <span id="mgemail"></span> <br />
+
+            <input
+              onblur="ckLaiEmail()"
+              style="width: 385px"
+              type="email"
+              class=""
+              id="remail"
+              placeholder="Nhập lại Email "
+            />
+            <span id="mgremail"></span> <br />
+
+            <input
+              onblur="ckMatKhau()"
+              style="width: 385px"
+              type="password"
+              placeholder="Mật khẩu"
+              id="mkhau"
+            />
+            <span id="mgmkhau"></span> <br />
+
+            <input
+              onblur="ckNamSinh()"
+              id="nam"
+              style="width: 385px"
+              type="text"
+              placeholder="Năm sinh"
+            />
+            <span id="mgnam"></span> <br />
+
+            <div
+              onclick="dangky()"
+              class="btn btn-success"
+              style="width: 120px"
+            >
+              Đăng ký
+            </div>
+            <span id="mgdangky"></span>
+          </form>
+        </aside>
+      </div>
+    </div>
+    <script>
+      function ckHo() {
+        const value = document.getElementById("ho").value.trim();
+        let regex = /^[A-Z]{1}[a-z]*$/;
+        if (regex.test(value)) {
+          document.getElementById("mgho").innerHTML = "Hợp lệ";
+          return true;
+        } else {
+          document.getElementById("mgho").innerHTML = "Họ không hợp lệ !";
+          return false;
+        }
+      }
+      function ckTen() {
+        const value = document.getElementById("ten").value.trim();
+        let regex = /^[A-Z]{1}[a-z]*$/;
+        if (regex.test(value)) {
+          document.getElementById("mgten").innerHTML = "Hợp lệ";
+          return true;
+        } else {
+          document.getElementById("mgten").innerHTML = "Tên không hợp lệ !";
+          return false;
+        }
+      }
+
+      function ckEmail() {
+        const value = document.getElementById("email").value.trim();
+        let regex = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+        if (regex.test(value)) {
+          document.getElementById("mgemail").innerHTML = "Hợp lệ";
+          return true;
+        } else {
+          document.getElementById("mgemail").innerHTML = "Email không hợp lệ !";
+          return false;
+        }
+      }
+
+      function ckLaiEmail() {
+        if (ckEmail()) {
+          if (
+            document.getElementById("email").value.trim() ==
+            document.getElementById("remail").value.trim()
+          ) {
+            document.getElementById("mgremail").innerHTML = "Hợp lệ";
+            return true;
+          } else {
+            document.getElementById("mgremail").innerHTML =
+              "Email không khớp !";
+            return false;
+          }
+        }
+      }
+
+      function ckMatKhau() {
+        const value = document.getElementById("mkhau").value.trim();
+        let regex = /((?=.*[0-9])(?=.*[A-Z]).{6,})/;
+        if (regex.test(value)) {
+          document.getElementById("mgmkhau").innerHTML = "Hợp lệ";
+          return true;
+        } else {
+          document.getElementById("mgmkhau").innerHTML = "Email không hợp lệ !";
+          return false;
+        }
+      }
+
+      function ckNamSinh() {
+        if (!isNaN(parseInt(document.getElementById("nam").value.trim()))) {
+          if (document.getElementById("nam").value.trim() < 2002) {
+            document.getElementById("mgnam").innerHTML = "Hợp lệ";
+            return true;
+          } else {
+            document.getElementById("mgnam").innerHTML =
+              "Năm không hợp lệ (<2002) !";
+            return false;
+          }
+        } else {
+          document.getElementById("mgnam").innerHTML = "Năm phải là số !";
+          return false;
+        }
+      }
+      function dangky() {
+        if (
+          ckEmail() &&
+          ckHo() &&
+          ckTen() &&
+          ckMatKhau() &&
+          ckLaiEmail() &&
+          ckNamSinh()
+        ) {
+          alert("Đăng ký thành công");
+        } else {
+        }
+      }
+    </script>
+  </body>
+</html>
